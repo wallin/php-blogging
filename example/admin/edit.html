@@ -1,0 +1,38 @@
+<div class="row" ng-controller="PostCtrl">
+  <div class="col-md-12">
+    <form role="form" ng-submit="post.id ? post.$update() : post.$save()" name="postForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" id="title" ng-model="post.title" required>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="date">Date</label>
+          <input class="form-control" name="date" type="datetime-local" id="date" ng-model="post.date">
+        </div>
+        <div class="col-sm-6">
+          <label for="date">Featured image (filename)</label>
+          <div class="input-group">
+            <div class="input-group-addon" ng-click="selectFeatured()" style="cursor: pointer;">./uploads/</div>
+            <input class="form-control" name="date" type="text" id="date" ng-model="post.image">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="source">Content (markdown)</label>
+        <textarea rows="25" class="form-control" ng-model="post.source" id="source"></textarea>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="post.published"> Published
+        </label>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-default" ng-click="selectImage()">Insert image</a>
+        <a ng-if="post.id" ng-href="{{post.link}}" target="_new" class="btn btn-default">Preview</a>
+        <button type="submit" class="btn btn-success" ng-bind="post.id ? 'Save' : 'Create'" ng-disabled="postForm.$pristine">Loading</button>
+      </div>
+      <a ng-if="post.id" class="btn btn-danger" ng-click="delete()">Delete</a>
+    </form>
+  </div>
+</div>

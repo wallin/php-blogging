@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12" ng-if='uploader.isHTML5'>
+    <div nv-file-drop="" uploader="uploader">
+        <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+            Drop file here to upload
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Filename</th>
+          <th>Created</th>
+          <th>Size</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="images.$resolved && images.length == 0">
+          <td colspan="5">
+            <div class="text-center alert alert-info">No images</div>
+          </td>
+        </tr>
+        <tr ng-repeat="image in images">
+          <td>
+            <img ng-src="../uploads/{{image.filename}}" style="max-width: 40px; max-height: 40px">
+          </td>
+          <td ng-bind="image.filename"></td>
+          <td ng-bind="image.created_at | date"></td>
+          <td ng-bind-template="{{image.width}}x{{image.height}}"></td>
+          <td>
+            <button class="btn btn-xs btn-danger" ng-click="delete(image)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

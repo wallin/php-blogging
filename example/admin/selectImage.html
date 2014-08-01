@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title">Select image</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-2" ng-repeat="image in images">
+            <a class="thumbnail" ng-click="selected.item = image">
+              <img class="img-responsive" ng-src="../uploads/{{image.filename}}">
+              <div class="small text-center text-muted" ng-bind-template="{{image.width}}x{{image.height}}"></div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" ng-if='uploader.isHTML5'>
+        <div nv-file-drop="" uploader="uploader">
+            <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+                Drop file here to upload
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+    Selected: <b>{{ selected.item.filename }}</b>
+    <button class="btn btn-primary" ng-click="$close(selected.item)">Insert</button>
+    <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+</div>

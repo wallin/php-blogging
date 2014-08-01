@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Post</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tr ng-if="posts.length == 0">
+        <td class="text-center" colspan="3">
+          <div class="alert alert-info">
+            No posts, why don't you
+            <a href="#/create">create one</a>
+          </div>
+        </td>
+      </tr>
+      <tr ng-repeat='post in posts'>
+        <td>
+          <a ng-href="#/posts/{{post.id}}" ng-bind="post.title"></a>
+        </td>
+        <td>
+          <span ng-bind="post.date | date"></span>
+        </td>
+        <td>
+         <span class="label" ng-bind="post.published ? 'Published' : 'Draft'" ng-class="post.published ? 'label-success' : 'label-default'"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
